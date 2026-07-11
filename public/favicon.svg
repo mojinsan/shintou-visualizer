@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .bg { fill: #ffffff; stroke: #e2e8f0; }
+    .ego { fill: #2563eb; }
+    .ancestor { stroke: #2e5aa8; }
+    .descendant { stroke: #1f9e6d; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #020817; stroke: #1e293b; }
+      .ego { fill: #5b8fd6; }
+      .ancestor { stroke: #5b8fd6; }
+      .descendant { stroke: #1a9660; }
+    }
+  </style>
+  <rect class="bg" x="1" y="1" width="30" height="30" rx="7" stroke-width="1"/>
+  <g fill="none" stroke-linecap="round">
+    <path class="ancestor" d="M9 16a7 7 0 0 1 14 0" stroke-width="2" opacity="0.95"/>
+    <path class="ancestor" d="M5.5 16a10.5 10.5 0 0 1 21 0" stroke-width="1.6" opacity="0.55"/>
+    <path class="descendant" d="M9 16a7 7 0 0 0 14 0" stroke-width="2" opacity="0.95"/>
+    <path class="descendant" d="M5.5 16a10.5 10.5 0 0 0 21 0" stroke-width="1.6" opacity="0.55"/>
+  </g>
+  <circle class="ego" cx="16" cy="16" r="2.6"/>
+</svg>
