@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cmd=$(jq -r '.tool_input.command'); stripped=$(printf '%s' \"$cmd\" | sed -E \"s/'[^']*'//g; s/\\\"[^\\\"]*\\\"//g\"); if printf '%s' \"$stripped\" | grep -Eq '(^|[;&|])[[:space:]]*git([[:space:]]+[^;&|[:space:]]+)*[[:space:]]+push([[:space:]]|$)'; then printf '%s\\n' '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"git push is blocked in this repo. The gh/git credential helper on this machine authenticates as a different, personal GitHub account than this repo (mojinsan/shintou-visualizer) belongs to - a push run from here would be attributed to the wrong GitHub account. Do not retry push, force-push, use --set-upstream tricks, or push via another remote/protocol as a workaround. Tell the user the commits/branch are ready and ask them to run git push themselves.\"}}'; fi"
+          }
+        ]
+      }
+    ]
+  }
+}

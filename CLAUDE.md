@@ -38,3 +38,11 @@ Both simulations depend on `src/lib/distribution.ts` (`computeOffspringStats`), 
 ## Deployment
 
 Pure client-side static site — `npm run build` produces `dist/`, which needs no server-side logic (state lives entirely in URL query params, no server routes or APIs). Deployable to any static host (e.g. GitHub Pages); no containerization required.
+
+## Git: never push — the user always pushes manually
+
+This repo (`mojinsan/shintou-visualizer`) is owned by GitHub account **mojinsan**, but the `gh`/git credential helper on the dev machine authenticates as a *different*, personal GitHub account. Any `git push` run from a shell here would be attributed to the wrong GitHub account.
+
+**Claude must never run `git push` (or any push variant — force-push, `--set-upstream`, pushing via another remote/protocol as a workaround) in this repo, even if explicitly asked.** Instead: finish the commit(s), confirm the branch/working tree state, and tell the user their work is ready for them to push themselves.
+
+This is enforced by a `PreToolUse` hook on `Bash` in `.claude/settings.json` that denies any command matching `git push`, so an attempt will be blocked automatically — but don't rely on the hook alone; treat "don't push" as a hard rule regardless.
